@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Editor — DevPortfolio Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/forms.css" />
+</head>
+<body>
+<div class="app-shell">
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div class="sidebar-brand">DevPortfolio<span>Case-Study Builder</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Main</span>
+      <a class="nav-item" href="../index.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="personal-info.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label">Personal Info</span></a>
+      <a class="nav-item" href="project-builder.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span><span class="nav-label">Project Builder</span><span class="nav-badge" id="sidebar-project-count">0</span></a>
+      <span class="nav-section-label" style="margin-top:var(--space-4)">Portfolio</span>
+      <a class="nav-item" href="template-gallery.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><span class="nav-label">Template Gallery</span></a>
+      <a class="nav-item active" href="live-editor.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="nav-label">Live Editor</span></a>
+      <a class="nav-item" href="portfolio.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="nav-label">Generated Portfolio</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="sidebar-collapse-btn" id="sidebar-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg><span class="btn-label">Collapse</span></button>
+      <button class="sidebar-collapse-btn" id="logout-btn" style="margin-top:var(--space-2);color:var(--color-danger)" onclick="Auth.logout();window.location.href='auth.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span class="btn-label">Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content" id="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-mobile-menu" id="mobile-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <nav class="topbar-breadcrumb">
+          <a href="../index.html" style="color:var(--text-muted);text-decoration:none">DevPortfolio</a>
+          <span class="sep">/</span><span class="current">Live Editor</span>
+        </nav>
+      </div>
+      <div class="topbar-right">
+        <!-- Device toggle -->
+        <div class="tabs" style="padding:3px;gap:var(--space-1)">
+          <button class="tab-btn active" id="device-desktop" data-device="desktop" title="Desktop view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </button>
+          <button class="tab-btn" id="device-tablet" data-device="tablet" title="Tablet view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </button>
+          <button class="tab-btn" id="device-mobile" data-device="mobile" title="Mobile view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle"></button>
+        <button class="btn btn-primary btn-sm" id="refresh-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3"/></svg>
+          Refresh
+        </button>
+      </div>
+    </header>
+
+    <!-- Editor Layout -->
+    <div class="editor-shell">
+      <!-- Controls Panel -->
+      <div class="editor-controls" id="editor-controls">
+
+        <!-- Template Selector -->
+        <div class="ctrl-section">
+          <div class="ctrl-section-title">Template</div>
+          <div class="template-btns" id="template-switcher">
+            <button class="tpl-btn" data-tpl="aurora">Aurora</button>
+            <button class="tpl-btn" data-tpl="minimal">Minimal</button>
+            <button class="tpl-btn" data-tpl="neon">Neon</button>
+          </div>
+        </div>
+
+        <div class="ctrl-divider"></div>
+
+        <!-- Colors -->
+        <div class="ctrl-section">
+          <div class="ctrl-section-title">Colors</div>
+          <div class="form-group">
+            <label class="form-label" style="font-size:var(--text-xs)">Primary Color</label>
+            <div style="display:flex;gap:var(--space-2);align-items:center">
+              <input type="color" id="color-primary" class="color-input" value="#3b82f6" />
+              <input type="text" id="color-primary-hex" class="input" value="#3b82f6" style="font-family:var(--font-mono);font-size:var(--text-xs)" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size:var(--text-xs)">Secondary Color</label>
+            <div style="display:flex;gap:var(--space-2);align-items:center">
+              <input type="color" id="color-secondary" class="color-input" value="#8b5cf6" />
+              <input type="text" id="color-secondary-hex" class="input" value="#8b5cf6" style="font-family:var(--font-mono);font-size:var(--text-xs)" />
+            </div>
+          </div>
+          <!-- Color Presets -->
+          <div class="color-presets">
+            <div class="preset-dot" data-primary="#3b82f6" data-secondary="#8b5cf6" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)" title="Ocean"></div>
+            <div class="preset-dot" data-primary="#10b981" data-secondary="#06b6d4" style="background:linear-gradient(135deg,#10b981,#06b6d4)" title="Teal"></div>
+            <div class="preset-dot" data-primary="#f59e0b" data-secondary="#ef4444" style="background:linear-gradient(135deg,#f59e0b,#ef4444)" title="Sunset"></div>
+            <div class="preset-dot" data-primary="#ec4899" data-secondary="#8b5cf6" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)" title="Candy"></div>
+            <div class="preset-dot" data-primary="#00ff88" data-secondary="#00d4ff" style="background:linear-gradient(135deg,#00ff88,#00d4ff)" title="Neon"></div>
+            <div class="preset-dot" data-primary="#f97316" data-secondary="#ea580c" style="background:linear-gradient(135deg,#f97316,#ea580c)" title="Orange"></div>
+          </div>
+        </div>
+
+        <div class="ctrl-divider"></div>
+
+        <!-- Font -->
+        <div class="ctrl-section">
+          <div class="ctrl-section-title">Typography</div>
+          <div class="form-group">
+            <label class="form-label" style="font-size:var(--text-xs)">Font Family</label>
+            <select id="font-selector" class="input">
+              <option value="Inter">Inter</option>
+              <option value="Poppins">Poppins</option>
+              <option value="Roboto">Roboto</option>
+              <option value="Lato">Lato</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="Raleway">Raleway</option>
+              <option value="Nunito">Nunito</option>
+              <option value="DM Sans">DM Sans</option>
+              <option value="Outfit">Outfit</option>
+              <option value="Space Grotesk">Space Grotesk</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ctrl-divider"></div>
+
+        <!-- Section Visibility -->
+        <div class="ctrl-section">
+          <div class="ctrl-section-title">Sections</div>
+          <div class="section-toggles" id="section-toggles">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="ctrl-divider"></div>
+
+        <!-- Actions -->
+        <div class="ctrl-section">
+          <a href="portfolio.html" class="btn btn-primary" style="width:100%;justify-content:center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Full Portfolio Preview
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Preview Panel -->
+      <div class="editor-preview-panel" id="editor-preview-panel">
+        <div class="editor-preview-wrapper" id="preview-wrapper">
+          <iframe id="editor-iframe" title="Portfolio Preview"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+<div id="toast-container" class="toast-container"></div>
+
+<style>
+/* Editor Layout */
+.editor-shell {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 68px);
+  overflow: hidden;
+}
+
+.editor-controls {
+  width: 280px;
+  min-width: 280px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-subtle);
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding: var(--space-5) 0;
+}
+
+.ctrl-section { padding: 0 var(--space-5); margin-bottom: var(--space-4); }
+.ctrl-section-title { font-size: var(--text-xs); font-weight: var(--font-semibold); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-3); }
+.ctrl-divider { height: 1px; background: var(--border-subtle); margin: var(--space-4) 0; }
+
+/* Template Buttons */
+.template-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+.tpl-btn {
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+.tpl-btn:hover { border-color: var(--border-medium); color: var(--text-primary); }
+.tpl-btn.active { background: var(--gradient-brand); border-color: transparent; color: white; }
+
+/* Color presets */
+.color-presets { display: flex; gap: var(--space-2); margin-top: var(--space-2); flex-wrap: wrap; }
+.preset-dot { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform var(--transition-fast), border-color var(--transition-fast); }
+.preset-dot:hover { transform: scale(1.2); border-color: var(--border-strong); }
+
+/* Section toggles */
+.section-toggles { display: flex; flex-direction: column; gap: var(--space-3); }
+.section-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: var(--text-sm); color: var(--text-secondary);
+}
+.section-toggle-row .toggle { gap: var(--space-2); }
+.section-toggle-row .toggle-label { font-size: var(--text-sm); }
+
+/* Preview Panel */
+.editor-preview-panel {
+  flex: 1;
+  background: #1a1a2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.editor-preview-wrapper {
+  background: white;
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: width var(--transition-spring), height var(--transition-spring);
+  width: 100%; max-width: 1200px;
+  height: calc(100vh - 120px);
+}
+
+.editor-preview-wrapper.tablet { max-width: 768px; height: calc(100vh - 120px); border-radius: var(--radius-xl); }
+.editor-preview-wrapper.mobile { max-width: 390px; height: 760px; border-radius: 36px; border: 8px solid var(--bg-tertiary); }
+
+#editor-iframe { width: 100%; height: 100%; border: none; }
+
+@media (max-width: 768px) {
+  .editor-controls { display: none; }
+  .editor-preview-wrapper.tablet,
+  .editor-preview-wrapper.mobile { max-width: 100%; }
+}
+</style>
+
+<script src="../js/core/store.js"></script>
+<script src="../js/core/utils.js"></script>
+<script src="../js/core/theme.js"></script>
+<script src="../js/core/auth.js"></script>
+<script>if (!Auth.isLoggedIn()) { window.location.href = 'auth.html'; }</script>
+<script src="../js/templates/template-aurora.js"></script>
+<script src="../js/templates/template-minimal.js"></script>
+<script src="../js/templates/template-neon.js"></script>
+<script src="../js/pages/live-editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generated Portfolio — DevPortfolio Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/forms.css" />
+</head>
+<body>
+<div class="app-shell">
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div class="sidebar-brand">DevPortfolio<span>Case-Study Builder</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Main</span>
+      <a class="nav-item" href="../index.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="personal-info.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label">Personal Info</span></a>
+      <a class="nav-item" href="project-builder.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span><span class="nav-label">Project Builder</span><span class="nav-badge" id="sidebar-project-count">0</span></a>
+      <span class="nav-section-label" style="margin-top:var(--space-4)">Portfolio</span>
+      <a class="nav-item" href="template-gallery.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><span class="nav-label">Template Gallery</span></a>
+      <a class="nav-item" href="live-editor.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="nav-label">Live Editor</span></a>
+      <a class="nav-item active" href="portfolio.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="nav-label">Generated Portfolio</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="sidebar-collapse-btn" id="sidebar-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg><span class="btn-label">Collapse</span></button>
+      <button class="sidebar-collapse-btn" id="logout-btn" style="margin-top:var(--space-2);color:var(--color-danger)" onclick="Auth.logout();window.location.href='auth.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span class="btn-label">Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content" id="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-mobile-menu" id="mobile-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <nav class="topbar-breadcrumb">
+          <a href="../index.html" style="color:var(--text-muted);text-decoration:none">DevPortfolio</a>
+          <span class="sep">/</span><span class="current">Generated Portfolio</span>
+        </nav>
+      </div>
+      <div class="topbar-right">
+        <!-- Device Toggle -->
+        <div class="tabs" style="padding:3px;gap:var(--space-1)">
+          <button class="tab-btn active" data-device="desktop" title="Desktop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </button>
+          <button class="tab-btn" data-device="tablet" title="Tablet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </button>
+          <button class="tab-btn" data-device="mobile" title="Mobile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle"></button>
+        <button class="btn btn-secondary btn-sm" id="copy-html-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy HTML
+        </button>
+        <button class="btn btn-primary btn-sm" id="download-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download HTML
+        </button>
+      </div>
+    </header>
+
+    <!-- Portfolio Info Bar -->
+    <div class="portfolio-info-bar" id="portfolio-info-bar">
+      <div class="pib-left">
+        <span class="badge badge-violet" id="pib-template">Aurora</span>
+        <span class="pib-sep">·</span>
+        <span class="pib-text" id="pib-profile-name">No name set</span>
+        <span class="pib-sep">·</span>
+        <span class="pib-text" id="pib-project-count">0 projects</span>
+      </div>
+      <div class="pib-right">
+        <a href="live-editor.html" class="btn btn-ghost btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Edit
+        </a>
+      </div>
+    </div>
+
+    <!-- Device Frame + Portfolio Preview -->
+    <div class="portfolio-preview-area" id="portfolio-preview-area">
+      <div class="device-frame" id="device-frame">
+        <div class="device-top-bar" id="device-top-bar">
+          <div class="device-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="device-url-bar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="device-url">yourportfolio.com</span>
+          </div>
+        </div>
+        <iframe id="portfolio-iframe" title="Generated Portfolio" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </main>
+</div>
+<div id="toast-container" class="toast-container"></div>
+
+<style>
+/* Portfolio page layout */
+.portfolio-info-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+}
+.pib-left  { display: flex; align-items: center; gap: var(--space-3); }
+.pib-sep   { color: var(--border-strong); }
+.pib-text  { color: var(--text-muted); }
+.pib-right { display: flex; align-items: center; gap: var(--space-3); }
+
+.portfolio-preview-area {
+  flex: 1;
+  background: #1a1a2e;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--space-8);
+  min-height: calc(100vh - 140px);
+  overflow: auto;
+}
+
+/* Device Frames */
+.device-frame {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(255,255,255,0.08);
+  transition: all var(--transition-spring);
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.device-frame.tablet {
+  max-width: 768px;
+  border-radius: 20px;
+  border: 8px solid #1a2340;
+  box-shadow: var(--shadow-xl), 0 0 0 2px rgba(59,130,246,0.1);
+}
+
+.device-frame.mobile {
+  max-width: 390px;
+  border-radius: 44px;
+  border: 10px solid #111827;
+  box-shadow: var(--shadow-xl), 0 0 0 2px rgba(59,130,246,0.1);
+}
+
+.device-top-bar {
+  height: 38px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+.device-frame.mobile .device-top-bar { display: none; }
+
+.device-dots { display: flex; gap: 6px; }
+.device-dots span { width: 12px; height: 12px; border-radius: 50%; }
+.device-dots span:nth-child(1) { background: #ef4444; }
+.device-dots span:nth-child(2) { background: #f59e0b; }
+.device-dots span:nth-child(3) { background: #10b981; }
+
+.device-url-bar {
+  flex: 1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+#portfolio-iframe {
+  width: 100%;
+  height: calc(100vh - 200px);
+  border: none;
+  flex: 1;
+}
+
+.device-frame.mobile #portfolio-iframe {
+  height: 700px;
+}
+</style>
+
+<script src="../js/core/store.js"></script>
+<script src="../js/core/utils.js"></script>
+<script src="../js/core/theme.js"></script>
+<script src="../js/core/auth.js"></script>
+<script>if (!Auth.isLoggedIn()) { window.location.href = 'auth.html'; }</script>
+<script src="../js/templates/template-aurora.js"></script>
+<script src="../js/templates/template-minimal.js"></script>
+<script src="../js/templates/template-neon.js"></script>
+<script src="../js/pages/portfolio.js"></script>
+</body>
+</html>

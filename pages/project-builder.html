@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Builder — DevPortfolio Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/forms.css" />
+</head>
+<body>
+<div class="app-shell">
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div class="sidebar-brand">DevPortfolio<span>Case-Study Builder</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Main</span>
+      <a class="nav-item" href="../index.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" href="personal-info.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="nav-label">Personal Info</span></a>
+      <a class="nav-item active" href="project-builder.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span><span class="nav-label">Project Builder</span><span class="nav-badge" id="sidebar-project-count">0</span></a>
+      <span class="nav-section-label" style="margin-top:var(--space-4)">Portfolio</span>
+      <a class="nav-item" href="template-gallery.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><span class="nav-label">Template Gallery</span></a>
+      <a class="nav-item" href="live-editor.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span><span class="nav-label">Live Editor</span></a>
+      <a class="nav-item" href="portfolio.html"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="nav-label">Generated Portfolio</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="sidebar-collapse-btn" id="sidebar-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg><span class="btn-label">Collapse</span></button>
+      <button class="sidebar-collapse-btn" id="logout-btn" style="margin-top:var(--space-2);color:var(--color-danger)" onclick="Auth.logout();window.location.href='auth.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span class="btn-label">Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content" id="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="topbar-mobile-menu" id="mobile-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <nav class="topbar-breadcrumb">
+          <a href="../index.html" style="color:var(--text-muted);text-decoration:none">DevPortfolio</a>
+          <span class="sep">/</span><span class="current">Project Builder</span>
+        </nav>
+      </div>
+      <div class="topbar-right">
+        <button class="theme-toggle" id="theme-toggle"></button>
+        <button class="btn btn-primary btn-sm" id="new-project-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Project
+        </button>
+      </div>
+    </header>
+
+    <div class="page-content animate-fade-in">
+      <div class="page-header">
+        <h1 class="page-title">Project Builder</h1>
+        <p class="page-subtitle">Create detailed case studies for each project — problem, solution, tech stack, and outcomes.</p>
+      </div>
+
+      <div class="pb-layout">
+        <!-- Left: Project List -->
+        <div class="pb-list-panel">
+          <div class="pb-list-header">
+            <div class="search-bar" style="flex:1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="project-search" placeholder="Search projects…" />
+            </div>
+          </div>
+          <div id="project-list-container">
+            <!-- Populated by JS -->
+          </div>
+          <button class="pb-add-first-btn" id="pb-add-first-btn" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32" style="color:var(--text-muted)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Add your first project</span>
+          </button>
+        </div>
+
+        <!-- Right: Project Editor -->
+        <div class="pb-editor-panel" id="pb-editor-panel">
+          <div class="pb-no-selection" id="pb-no-selection">
+            <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="empty-title">Select a project to edit</div>
+            <div class="empty-desc">Pick one from the list or create a new project case study</div>
+            <button class="btn btn-primary" id="no-sel-new-btn" style="margin-top:var(--space-4)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Create New Project
+            </button>
+          </div>
+
+          <div class="pb-editor-form" id="pb-editor-form" style="display:none">
+            <!-- Editor header -->
+            <div class="pb-editor-header">
+              <div class="pb-editor-title" id="pb-editor-title">New Project</div>
+              <div style="display:flex;gap:var(--space-3)">
+                <button class="btn btn-ghost btn-sm" id="pb-duplicate-btn" title="Duplicate">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Duplicate
+                </button>
+                <button class="btn btn-danger btn-sm" id="pb-delete-btn" title="Delete">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                  Delete
+                </button>
+                <button class="btn btn-primary btn-sm" id="pb-save-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                  Save
+                </button>
+              </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="pb-tabs tabs" id="pb-tabs">
+              <button class="tab-btn active" data-tab="overview">Overview</button>
+              <button class="tab-btn" data-tab="case-study">Case Study</button>
+              <button class="tab-btn" data-tab="media">Media & Links</button>
+            </div>
+
+            <!-- Tab: Overview -->
+            <div class="pb-tab-content" id="tab-overview">
+              <div class="form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Project Title <span class="required">*</span></label>
+                    <input type="text" id="proj-title" class="input" placeholder="My Awesome App" maxlength="80" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Tagline</label>
+                    <input type="text" id="proj-tagline" class="input" placeholder="A one-liner describing your project" maxlength="120" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Technologies Used</label>
+                  <div class="tag-input-container" id="tech-container">
+                    <input type="text" class="tag-input-field" id="tech-input" placeholder="Add a technology and press Enter…" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox-group" style="margin-top:var(--space-2)">
+                    <input type="checkbox" id="proj-featured" />
+                    <label for="proj-featured">Mark as featured project</label>
+                  </div>
+                </div>
+                <!-- Live Preview Card -->
+                <div class="form-group">
+                  <label class="form-label">Live Preview</label>
+                  <div class="proj-preview-card" id="proj-preview-card">
+                    <div class="ppc-thumb" id="ppc-thumb">
+                      <span id="ppc-initial">?</span>
+                    </div>
+                    <div class="ppc-body">
+                      <div class="ppc-title" id="ppc-title">Untitled Project</div>
+                      <div class="ppc-tagline" id="ppc-tagline">Your tagline here</div>
+                      <div class="ppc-tags" id="ppc-tags"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: Case Study -->
+            <div class="pb-tab-content" id="tab-case-study" style="display:none">
+              <div class="form">
+                <div class="form-group">
+                  <label class="form-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Problem Statement
+                    <span class="form-hint" style="margin-left:auto">What problem does this solve?</span>
+                  </label>
+                  <textarea id="proj-problem" class="input xl" placeholder="Describe the problem or challenge that motivated this project. What pain point did users have? What gap existed in the market?"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/></svg>
+                    Your Solution
+                  </label>
+                  <textarea id="proj-solution" class="input xl" placeholder="Explain your approach and solution. How did you address the problem? What makes your solution unique?"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Key Features</label>
+                  <div id="features-list"></div>
+                  <button class="btn btn-secondary btn-sm" id="add-feature-btn" style="margin-top:var(--space-2)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add Feature
+                  </button>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Challenges & Learnings</label>
+                  <textarea id="proj-challenges" class="input tall" placeholder="What were the biggest technical challenges? What did you learn from building this?"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Outcomes & Impact</label>
+                  <textarea id="proj-outcomes" class="input tall" placeholder="What were the results? Mention metrics, user adoption, performance improvements, etc."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: Media & Links -->
+            <div class="pb-tab-content" id="tab-media" style="display:none">
+              <div class="form">
+                <div class="form-group">
+                  <label class="form-label">Thumbnail / Cover Image URL</label>
+                  <div class="input-group">
+                    <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>
+                    <input type="url" id="proj-thumbnail" class="input" placeholder="https://example.com/screenshot.png" />
+                  </div>
+                  <div class="thumbnail-preview" id="thumbnail-preview"></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Live URL</label>
+                    <div class="input-group">
+                      <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+                      <input type="url" id="proj-live-url" class="input" placeholder="https://myproject.com" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">GitHub URL</label>
+                    <div class="input-group">
+                      <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
+                      <input type="url" id="proj-github-url" class="input" placeholder="https://github.com/user/repo" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.pb-editor-form -->
+        </div><!-- /.pb-editor-panel -->
+      </div><!-- /.pb-layout -->
+    </div>
+  </main>
+</div>
+<div id="toast-container" class="toast-container"></div>
+
+<style>
+.pb-layout { display: grid; grid-template-columns: 300px 1fr; gap: var(--space-6); min-height: calc(100vh - 140px); }
+@media (max-width: 960px) { .pb-layout { grid-template-columns: 1fr; } }
+
+.pb-list-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-height: calc(100vh - 160px);
+  position: sticky;
+  top: 80px;
+}
+
+.pb-list-header { padding: var(--space-3) var(--space-3); border-bottom: 1px solid var(--border-subtle); }
+
+#project-list-container { flex: 1; overflow-y: auto; padding: var(--space-2); }
+
+.pb-proj-list-item {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3); border-radius: var(--radius-md);
+  cursor: pointer; transition: background var(--transition-fast);
+  border: 1px solid transparent;
+  margin-bottom: var(--space-1);
+}
+.pb-proj-list-item:hover { background: var(--bg-hover); }
+.pb-proj-list-item.active { background: var(--gradient-glow); border-color: var(--border-medium); }
+
+.pb-proj-thumb {
+  width: 40px; height: 40px; border-radius: var(--radius-md);
+  background: var(--gradient-brand); display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-md); font-weight: var(--font-bold); color: white;
+  overflow: hidden; flex-shrink: 0; border: 1px solid var(--border-medium);
+}
+.pb-proj-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.pb-proj-info { flex: 1; min-width: 0; }
+.pb-proj-name { font-size: var(--text-sm); font-weight: var(--font-semibold); color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-proj-meta { font-size: var(--text-xs); color: var(--text-muted); margin-top: 2px; }
+
+.pb-add-first-btn {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-2);
+  padding: var(--space-12); font-size: var(--text-sm); color: var(--text-muted);
+  background: none; border: none; cursor: pointer; width: 100%; text-align: center;
+  transition: color var(--transition-fast);
+}
+.pb-add-first-btn:hover { color: var(--accent-blue); }
+
+.pb-editor-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.pb-no-selection { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--space-20); text-align: center; gap: var(--space-3); min-height: 400px; }
+
+.pb-editor-form { display: flex; flex-direction: column; }
+
+.pb-editor-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--border-subtle); gap: var(--space-3); }
+.pb-editor-title { font-size: var(--text-lg); font-weight: var(--font-bold); color: var(--text-primary); }
+
+.pb-tabs { margin: var(--space-4) var(--space-6); }
+.pb-tab-content { padding: 0 var(--space-6) var(--space-6); }
+
+/* Project Preview Card */
+.proj-preview-card {
+  display: flex; gap: var(--space-4); align-items: center;
+  background: var(--bg-surface); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); padding: var(--space-4);
+  transition: border-color var(--transition-fast);
+}
+.ppc-thumb {
+  width: 80px; height: 60px; border-radius: var(--radius-md);
+  background: var(--gradient-brand); display: flex; align-items: center; justify-content: center;
+  font-size: var(--text-2xl); font-weight: var(--font-bold); color: white;
+  overflow: hidden; flex-shrink: 0;
+}
+.ppc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ppc-title   { font-size: var(--text-md); font-weight: var(--font-bold); color: var(--text-primary); }
+.ppc-tagline { font-size: var(--text-xs); color: var(--text-muted); margin-top: 4px; }
+.ppc-tags    { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-top: var(--space-2); }
+
+/* Feature list items */
+.feature-item {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) 0; border-bottom: 1px solid var(--border-subtle);
+  animation: fadeIn 150ms ease;
+}
+.feature-item:last-child { border-bottom: none; }
+.feature-item input { flex: 1; background: none; border: none; outline: none; font-size: var(--text-sm); color: var(--text-primary); }
+.feature-item input::placeholder { color: var(--text-muted); }
+.feature-remove { color: var(--text-muted); background: none; border: none; cursor: pointer; padding: 4px; border-radius: var(--radius-sm); transition: color var(--transition-fast), background var(--transition-fast); }
+.feature-remove:hover { color: var(--color-danger); background: var(--color-danger-bg); }
+
+/* Thumbnail preview */
+.thumbnail-preview { margin-top: var(--space-3); }
+.thumbnail-preview img { border-radius: var(--radius-md); max-height: 160px; border: 1px solid var(--border-medium); }
+</style>
+
+<script src="../js/core/store.js"></script>
+<script src="../js/core/utils.js"></script>
+<script src="../js/core/theme.js"></script>
+<script src="../js/core/auth.js"></script>
+<script>if (!Auth.isLoggedIn()) { window.location.href = 'auth.html'; }</script>
+<script src="../js/pages/project-builder.js"></script>
+</body>
+</html>

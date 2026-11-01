@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Developer Portfolio & Case-Study Builder — Create stunning developer portfolios with detailed project case studies." />
+  <title>Dashboard — DevPortfolio Builder</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/forms.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     APP SHELL
+══════════════════════════════════════════ -->
+<div class="app-shell">
+
+  <!-- ── Sidebar Overlay (mobile) ── -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+
+    <!-- Header / Brand -->
+    <div class="sidebar-header">
+      <div class="sidebar-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <div class="sidebar-brand">
+        DevPortfolio
+        <span>Case-Study Builder</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav" aria-label="Page Navigation">
+
+      <span class="nav-section-label">Main</span>
+
+      <a class="nav-item active" data-route="/" href="index.html" id="nav-dashboard">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+
+      <a class="nav-item" data-route="/personal" href="pages/personal-info.html" id="nav-personal">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </span>
+        <span class="nav-label">Personal Info</span>
+      </a>
+
+      <a class="nav-item" data-route="/projects" href="pages/project-builder.html" id="nav-projects">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+        </span>
+        <span class="nav-label">Project Builder</span>
+        <span class="nav-badge" id="sidebar-project-count">0</span>
+      </a>
+
+      <span class="nav-section-label" style="margin-top:var(--space-4)">Portfolio</span>
+
+      <a class="nav-item" data-route="/templates" href="pages/template-gallery.html" id="nav-templates">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </span>
+        <span class="nav-label">Template Gallery</span>
+      </a>
+
+      <a class="nav-item" data-route="/editor" href="pages/live-editor.html" id="nav-editor">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </span>
+        <span class="nav-label">Live Editor</span>
+      </a>
+
+      <a class="nav-item" data-route="/portfolio" href="pages/portfolio.html" id="nav-portfolio">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </span>
+        <span class="nav-label">Generated Portfolio</span>
+      </a>
+
+    </nav>
+
+    <!-- Footer / Collapse -->
+    <div class="sidebar-footer">
+      <button class="sidebar-collapse-btn" id="sidebar-toggle" aria-label="Collapse sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/>
+        </svg>
+        <span class="btn-label">Collapse</span>
+      </button>
+      <button class="sidebar-collapse-btn" id="logout-btn" aria-label="Sign out" style="margin-top:var(--space-2);color:var(--color-danger)" onclick="Auth.logout();window.location.href='pages/auth.html'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        <span class="btn-label">Sign Out</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════ -->
+  <main class="main-content" id="main-content">
+
+    <!-- Top Bar -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="topbar-mobile-menu" id="mobile-menu-btn" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <nav class="topbar-breadcrumb" aria-label="Breadcrumb">
+          <span>DevPortfolio</span>
+          <span class="sep">/</span>
+          <span class="current">Dashboard</span>
+        </nav>
+      </div>
+      <div class="topbar-right">
+        <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle theme" aria-label="Toggle theme">
+          <!-- Icon injected by theme.js -->
+        </button>
+        <a href="pages/portfolio.html" class="btn btn-primary btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Preview Portfolio
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content animate-fade-in">
+
+      <!-- ── Page Header ── -->
+      <div class="page-header">
+        <div class="dashboard-welcome">
+          <div class="welcome-avatar avatar avatar-lg" id="welcome-avatar">?</div>
+          <div>
+            <h1 class="page-title" id="welcome-title">Welcome back! 👋</h1>
+            <p class="page-subtitle" id="welcome-subtitle">Build and publish your developer portfolio with detailed case studies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Stats Row ── -->
+      <div class="grid-4 stats-grid" style="margin-bottom:var(--space-8)">
+
+        <div class="stat-card animate-fade-in delay-1">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="stat-value" id="stat-projects">0</div>
+          <div class="stat-label">Total Projects</div>
+          <div class="stat-change up" id="stat-projects-change">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10"><polyline points="18 15 12 9 6 15"/></svg>
+            Ready to build
+          </div>
+        </div>
+
+        <div class="stat-card animate-fade-in delay-2">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="stat-value" id="stat-completion">0%</div>
+          <div class="stat-label">Profile Complete</div>
+          <div class="progress-bar" style="margin-top:var(--space-3)">
+            <div class="progress-fill" id="stat-completion-bar" style="width:0%"></div>
+          </div>
+        </div>
+
+        <div class="stat-card animate-fade-in delay-3">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <div class="stat-value" id="stat-template">—</div>
+          <div class="stat-label">Active Template</div>
+          <span class="badge badge-violet" style="margin-top:var(--space-3)" id="stat-template-badge">Not selected</span>
+        </div>
+
+        <div class="stat-card animate-fade-in delay-4">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="stat-value" id="stat-skills">0</div>
+          <div class="stat-label">Skills Listed</div>
+          <div class="stat-change up" style="margin-top:var(--space-3)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="10"><polyline points="18 15 12 9 6 15"/></svg>
+            Showcase ready
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Main Grid ── -->
+      <div class="dashboard-main-grid">
+
+        <!-- LEFT: Quick Actions + Recent Projects -->
+        <div class="dashboard-left">
+
+          <!-- Quick Actions -->
+          <div class="card animate-fade-in delay-2" style="margin-bottom:var(--space-6)">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Quick Actions</div>
+                <div class="card-subtitle">Jump right in</div>
+              </div>
+            </div>
+            <div class="quick-actions-grid">
+              <a href="pages/personal-info.html" class="quick-action-btn">
+                <div class="qa-icon" style="background:rgba(59,130,246,0.15)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <span>Edit Profile</span>
+              </a>
+              <a href="pages/project-builder.html" class="quick-action-btn" id="qa-add-project">
+                <div class="qa-icon" style="background:rgba(139,92,246,0.15)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </div>
+                <span>Add Project</span>
+              </a>
+              <a href="pages/template-gallery.html" class="quick-action-btn">
+                <div class="qa-icon" style="background:rgba(6,182,212,0.15)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                  </svg>
+                </div>
+                <span>Choose Template</span>
+              </a>
+              <a href="pages/portfolio.html" class="quick-action-btn">
+                <div class="qa-icon" style="background:rgba(16,185,129,0.15)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                </div>
+                <span>View Portfolio</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Recent Projects -->
+          <div class="card animate-fade-in delay-3">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Recent Projects</div>
+                <div class="card-subtitle">Your case studies</div>
+              </div>
+              <a href="pages/project-builder.html" class="btn btn-ghost btn-sm">View all</a>
+            </div>
+            <div id="recent-projects-list">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Profile Card + Checklist + Activity -->
+        <div class="dashboard-right">
+
+          <!-- Profile Summary Card -->
+          <div class="card profile-summary-card animate-fade-in delay-2" style="margin-bottom:var(--space-6)">
+            <div class="profile-summary-bg"></div>
+            <div class="profile-summary-content">
+              <div class="avatar avatar-xl profile-summary-avatar" id="profile-avatar-preview">?</div>
+              <div class="profile-summary-name" id="profile-name-preview">Your Name</div>
+              <div class="profile-summary-title" id="profile-title-preview">Add your title →</div>
+              <div class="profile-summary-tags" id="profile-skills-preview"></div>
+              <a href="pages/personal-info.html" class="btn btn-secondary btn-sm" style="margin-top:var(--space-4)">
+                Edit Profile
+              </a>
+            </div>
+          </div>
+
+          <!-- Setup Checklist -->
+          <div class="card animate-fade-in delay-3" style="margin-bottom:var(--space-6)">
+            <div class="card-header">
+              <div class="card-title">Setup Checklist</div>
+              <span class="badge badge-blue" id="checklist-progress">0/5</span>
+            </div>
+            <div class="checklist" id="setup-checklist">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+
+          <!-- Getting Started Tips -->
+          <div class="card getting-started-card animate-fade-in delay-4">
+            <div class="gs-header">
+              <div class="gs-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="12"/>
+                  <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div class="card-title">Getting Started</div>
+            </div>
+            <ol class="gs-steps">
+              <li><a href="pages/personal-info.html">Fill in your personal information</a></li>
+              <li><a href="pages/project-builder.html">Add your first project case study</a></li>
+              <li><a href="pages/template-gallery.html">Choose a portfolio template</a></li>
+              <li><a href="pages/live-editor.html">Customize colors and layout</a></li>
+              <li><a href="pages/portfolio.html">Preview and export your portfolio</a></li>
+            </ol>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div><!-- /.page-content -->
+  </main>
+
+</div><!-- /.app-shell -->
+
+<!-- ── Toast Container ── -->
+<div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+<!-- ── Scripts ── -->
+<script src="js/core/store.js"></script>
+<script src="js/core/utils.js"></script>
+<script src="js/core/theme.js"></script>
+<script src="js/core/auth.js"></script>
+<script>if (!Auth.isLoggedIn()) { window.location.href = 'pages/auth.html'; }</script>
+<script src="js/core/router.js"></script>
+<script src="js/pages/dashboard.js"></script>
+
+</body>
+</html>
